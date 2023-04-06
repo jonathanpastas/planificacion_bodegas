@@ -1,0 +1,101 @@
+<script>
+	function enviar3() {
+		var correo =document.getElementById('correo').value;
+		var contrasenia=document.getElementById('clave').value;
+
+		var bandera=false;
+
+
+		if(correo==null  || correo.length == 0 || /^\s+$/.test(correo) ){
+			alert("Por favor Ingrese el Correo para su Respectivo Login");
+			return false;
+
+		}
+
+		if(contrasenia==null  || contrasenia.length == 0 || /^\s+$/.test(contrasenia) ){
+			alert("Por favor Ingrese su Contraseña");
+			return false;
+
+		}
+
+
+
+
+			return true;
+		}
+
+</script>
+
+{% extends 'base.html' %}
+
+{% block body %}
+<nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">
+    <img src="/static/images/analisis.png" width="40" class="d-inline-block align-top" alt="">
+    Sistema de Planificación de Pedidos
+  </a>
+    <form class="form-inline">
+    <a href="/login" class="btn btn-outline-primary"><img src="/static/images/login.png" width="35" class="d-inline-block align-top" alt=""> INICIAR SESION</a>
+
+  </form>
+</nav>
+
+<br>
+<br>
+
+
+
+
+<div class="container" >
+
+
+<center>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+
+  {% for message in messages %}
+  <div class="alert alert-warning" role="alert">
+    {{ message }}
+  </div>
+  {% endfor %}
+
+  {% endif %}
+
+  {% endwith %}
+
+
+<div class="card text-white bg-secondary mb-3" style="max-width: 45rem;">
+  <h5 class="card-header">INGRESO AL SISTEMA </h5>
+  <center><img src="/static/images/analisis.png" width="85"></center>
+  <div class="card-body">
+
+
+
+      <form method="POST" action="ingresar"  onsubmit="return enviar3()">
+  <div class="form-group">
+    <label for="correo">Nombre de Usuario</label>
+
+    <input type="text" class="form-control" id="correo" name="correo" aria-describedby="emailHelp" placeholder="Ejm:spedidos">
+    <small id="emailHelp" class="form-text text-muted">Ingrese su nombre de usuario ejm: spedidos</small>
+  </div>
+  <div class="form-group">
+    <label for="clave">CONTRASEÑA </label>
+    <input type="password" class="form-control" id="clave" name="clave" placeholder="*******">
+  </div>
+
+  <button type="submit" class="btn btn-primary">ENTRAR</button>
+</form>
+
+
+
+  </div>
+</div>
+
+    </center>
+
+</div>
+<br>
+
+
+{% endblock %}
